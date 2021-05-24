@@ -1,0 +1,310 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             xmlns:ClockApp ="clr-namespace:ClockApp;assembly=ClockApp"
+             x:Class="ClockApp.MainPage"
+             x:DataType="ClockApp:ViewModel">
+    <ContentPage.Resources>
+        <ResourceDictionary>
+            <Style TargetType="Frame">
+                <Setter Property="HeightRequest" Value="320"/>
+                <Setter Property="WidthRequest" Value="180"/>
+            </Style>
+
+            <Style x:Key="BaseBox" TargetType="BoxView">
+                <Setter Property="CornerRadius" Value="100"/>
+                <Setter Property="Color" Value="Aqua" />
+                <Setter Property="RelativeLayout.HeightConstraint"
+                        Value="{ConstraintExpression 
+                                Type=RelativeToParent,
+                                Property=Height,
+                                Factor=0.13}"/>
+                <Setter Property="RelativeLayout.WidthConstraint"
+                        Value="{ConstraintExpression 
+                                Type=RelativeToParent,
+                                Property=Width,
+                                Factor=0.20}"/>
+            </Style>
+
+
+            <Style x:Key="HorizontalBox" TargetType="BoxView" BasedOn="{StaticResource Key=BaseBox}">
+                <Setter Property="RelativeLayout.XConstraint"
+                        Value="{ConstraintExpression 
+                                Type=RelativeToParent,
+                                Property=Width,
+                                Factor=0.22}"/>
+                <Setter Property="RelativeLayout.WidthConstraint"
+                        Value="{ConstraintExpression
+                                Type=RelativeToParent,
+                                Property=Width,
+                                Factor=0.56}"/>
+            </Style>
+
+
+            <Style x:Key="VerticalBox" TargetType="BoxView" BasedOn="{StaticResource Key=BaseBox}">
+                <Setter Property="RelativeLayout.HeightConstraint"
+                        Value="{ConstraintExpression
+                                Type=RelativeToParent,
+                                Property=Height,
+                                Factor=0.43}"/>
+            </Style>
+
+
+        </ResourceDictionary>
+
+
+
+    </ContentPage.Resources>
+
+    <Grid RowDefinitions="*, *, *" ColumnDefinitions="*, 6*, *">
+        <CollectionView ItemsSource="{Binding Numbers}" ItemSizingStrategy="MeasureAllItems"
+                        Grid.Column="1" Grid.Row="1">
+            <CollectionView.ItemsLayout>
+                <LinearItemsLayout Orientation="Horizontal" ItemSpacing="1"/>
+            </CollectionView.ItemsLayout>
+            <CollectionView.ItemTemplate>
+                <DataTemplate x:DataType="x:Char">
+                    <Frame VerticalOptions="CenterAndExpand" WidthRequest="100">
+                        <RelativeLayout>
+                            <BoxView  x:Name="TopHorizontal"
+                            Style="{StaticResource Key=HorizontalBox}"
+                            RelativeLayout.YConstraint= "{ConstraintExpression 
+                                Type=RelativeToParent,
+                                Property=Height, 
+                                Factor=0}" 
+                            IsVisible="True"
+                    >
+                                <BoxView.Triggers>
+                                    <DataTrigger Binding="{Binding}" Value="1" TargetType="BoxView">
+                                        <Setter Property="IsVisible" Value="False"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding}" Value="4" TargetType="BoxView">
+                                        <Setter Property="IsVisible" Value="False"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding}" Value=":" TargetType="BoxView">
+                                        <Setter Property="IsVisible" Value="False"/>
+                                    </DataTrigger>
+                                </BoxView.Triggers>
+                            </BoxView>
+                            <BoxView x:Name="MidHorizontal"
+                            Style="{StaticResource Key=HorizontalBox}"
+                            RelativeLayout.YConstraint= "{ConstraintExpression 
+                                Type=RelativeToParent,
+                                Property=Height, 
+                                Factor=0.43}"
+                            IsVisible="True"
+                    >
+                                <BoxView.Triggers>
+                                    <DataTrigger Binding="{Binding}" Value="0" TargetType="BoxView">
+                                        <Setter Property="IsVisible" Value="False"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding}" Value="1" TargetType="BoxView">
+                                        <Setter Property="IsVisible" Value="False"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding}" Value="7" TargetType="BoxView">
+                                        <Setter Property="IsVisible" Value="False"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding}" Value=":" TargetType="BoxView">
+                                        <Setter Property="IsVisible" Value="False"/>
+                                    </DataTrigger>
+                                </BoxView.Triggers>
+                            </BoxView>
+                            <BoxView x:Name="BotHorizontal"
+                            Style="{StaticResource Key=HorizontalBox}"
+                            RelativeLayout.YConstraint= "{ConstraintExpression 
+                                Type=RelativeToParent,
+                                Property=Height, 
+                                Factor=0.87}"
+                            IsVisible="True"
+                    >
+                                <BoxView.Triggers>
+                                    <DataTrigger Binding="{Binding}" Value="1" TargetType="BoxView">
+                                        <Setter Property="IsVisible" Value="False"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding}" Value="4" TargetType="BoxView">
+                                        <Setter Property="IsVisible" Value="False"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding}" Value="7" TargetType="BoxView">
+                                        <Setter Property="IsVisible" Value="False"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding}" Value=":" TargetType="BoxView">
+                                        <Setter Property="IsVisible" Value="False"/>
+                                    </DataTrigger>
+                                </BoxView.Triggers>
+                            </BoxView>
+
+
+
+                            <BoxView x:Name="TopLeftVertical"
+                            Style="{StaticResource Key=VerticalBox}"
+                            RelativeLayout.XConstraint="{ConstraintExpression 
+                                Type=RelativeToParent,
+                                Property=Width,
+                                Factor=0,
+                                Constant=0}"
+            
+                            RelativeLayout.YConstraint= "{ConstraintExpression 
+                                Type=RelativeToParent,
+                                Property=Height, 
+                                Factor=0.06}"
+                            IsVisible="True"
+                    >
+                                <BoxView.Triggers>
+                                    <DataTrigger Binding="{Binding}" Value="1" TargetType="BoxView">
+                                        <Setter Property="IsVisible" Value="False"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding}" Value="2" TargetType="BoxView">
+                                        <Setter Property="IsVisible" Value="False"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding}" Value="3" TargetType="BoxView">
+                                        <Setter Property="IsVisible" Value="False"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding}" Value="7" TargetType="BoxView">
+                                        <Setter Property="IsVisible" Value="False"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding}" Value=":" TargetType="BoxView">
+                                        <Setter Property="IsVisible" Value="False"/>
+                                    </DataTrigger>
+                                </BoxView.Triggers>
+                            </BoxView>
+                            <BoxView x:Name="BotLeftVertical"
+                            Style="{StaticResource Key=VerticalBox}"
+                            RelativeLayout.XConstraint="{ConstraintExpression 
+                                Type=RelativeToParent,
+                                Property=Width,
+                                Factor=0,
+                                Constant=0}"
+            
+                            RelativeLayout.YConstraint= "{ConstraintExpression 
+                                Type=RelativeToParent,
+                                Property=Height, 
+                                Factor=0.52}"
+                            IsVisible="True"
+                    >
+                                <BoxView.Triggers>
+                                    <DataTrigger Binding="{Binding}" Value="1" TargetType="BoxView">
+                                        <Setter Property="IsVisible" Value="False"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding}" Value="3" TargetType="BoxView">
+                                        <Setter Property="IsVisible" Value="False"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding}" Value="4" TargetType="BoxView">
+                                        <Setter Property="IsVisible" Value="False"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding}" Value="5" TargetType="BoxView">
+                                        <Setter Property="IsVisible" Value="False"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding}" Value="7" TargetType="BoxView">
+                                        <Setter Property="IsVisible" Value="False"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding}" Value="9" TargetType="BoxView">
+                                        <Setter Property="IsVisible" Value="False"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding}" Value=":" TargetType="BoxView">
+                                        <Setter Property="IsVisible" Value="False"/>
+                                    </DataTrigger>
+                                </BoxView.Triggers>
+                            </BoxView>
+                            <BoxView x:Name="BotRightVertical"
+                            Style="{StaticResource Key=VerticalBox}"
+                            RelativeLayout.XConstraint="{ConstraintExpression 
+                                Type=RelativeToParent,
+                                Property=Width,
+                                Factor=0.80,
+                                Constant=0}"
+            
+                            RelativeLayout.YConstraint= "{ConstraintExpression 
+                                Type=RelativeToParent,
+                                Property=Height, 
+                                Factor=0.52}"
+                            IsVisible="True"
+                    >
+                                <BoxView.Triggers>
+                                    <DataTrigger Binding="{Binding}" Value="2" TargetType="BoxView">
+                                        <Setter Property="IsVisible" Value="False"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding}" Value=":" TargetType="BoxView">
+                                        <Setter Property="IsVisible" Value="False"/>
+                                    </DataTrigger>
+                                </BoxView.Triggers>
+                            </BoxView>
+                            <BoxView x:Name="TopRightVertical"
+                            Style="{StaticResource Key=VerticalBox}"
+                            RelativeLayout.XConstraint="{ConstraintExpression 
+                                Type=RelativeToParent,
+                                Property=Width,
+                                Factor=0.80,
+                                Constant=0}"
+            
+                            RelativeLayout.YConstraint= "{ConstraintExpression 
+                                Type=RelativeToParent,
+                                Property=Height, 
+                                Factor=0.06}"
+                            IsVisible="True"
+                    >
+                                <BoxView.Triggers>
+                                    <DataTrigger Binding="{Binding}" Value="5" TargetType="BoxView">
+                                        <Setter Property="IsVisible" Value="False"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding}" Value="6" TargetType="BoxView">
+                                        <Setter Property="IsVisible" Value="False"/>
+                                    </DataTrigger>
+                                    <DataTrigger Binding="{Binding}" Value=":" TargetType="BoxView">
+                                        <Setter Property="IsVisible" Value="False"/>
+                                    </DataTrigger>
+                                </BoxView.Triggers>
+                            </BoxView>
+
+
+
+                            <BoxView x:Name="TopDot"
+                            Style="{StaticResource Key=BaseBox}"
+                            RelativeLayout.XConstraint="{ConstraintExpression 
+                                Type=RelativeToParent,
+                                Property=Width,
+                                Factor=0.39}"
+            
+                            RelativeLayout.YConstraint= "{ConstraintExpression 
+                                Type=RelativeToParent,
+                                Property=Height, 
+                                Factor=0.20}"
+                            IsVisible="False"
+                    >
+                                <BoxView.Triggers>
+                                    <DataTrigger Binding="{Binding}" Value=":" TargetType="BoxView">
+                                        <Setter Property="IsVisible" Value="True"/>
+                                    </DataTrigger>
+                                </BoxView.Triggers>
+                            </BoxView>
+                            <BoxView x:Name="BotDot"
+                            Style="{StaticResource Key=BaseBox}"
+                            RelativeLayout.XConstraint="{ConstraintExpression 
+                                Type=RelativeToParent,
+                                Property=Width,
+                                Factor=0.39}"
+            
+                            RelativeLayout.YConstraint= "{ConstraintExpression 
+                                Type=RelativeToParent,
+                                Property=Height, 
+                                Factor=0.53}"
+                            IsVisible="False"
+                    >
+                                <BoxView.Triggers>
+                                    <DataTrigger Binding="{Binding}" Value=":" TargetType="BoxView">
+                                        <Setter Property="IsVisible" Value="True"/>
+                                    </DataTrigger>
+                                </BoxView.Triggers>
+                            </BoxView>
+
+                        </RelativeLayout>
+                    </Frame>
+                </DataTemplate>
+            </CollectionView.ItemTemplate>
+        </CollectionView>
+    </Grid>
+    
+    
+    
+    
+
+</ContentPage>

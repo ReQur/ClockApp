@@ -1,0 +1,35 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.31019.35
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClockApp.Android", "ClockApp\ClockApp.Android\ClockApp.Android.csproj", "{F1F6C442-4562-490A-B644-E980DA62DF74}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "ClockApp", "ClockApp\ClockApp\ClockApp.csproj", "{9ABA2D4F-BCC9-469C-973E-4BDFE44BF7EE}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{F1F6C442-4562-490A-B644-E980DA62DF74}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{F1F6C442-4562-490A-B644-E980DA62DF74}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{F1F6C442-4562-490A-B644-E980DA62DF74}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{F1F6C442-4562-490A-B644-E980DA62DF74}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{F1F6C442-4562-490A-B644-E980DA62DF74}.Release|Any CPU.Build.0 = Release|Any CPU
+		{F1F6C442-4562-490A-B644-E980DA62DF74}.Release|Any CPU.Deploy.0 = Release|Any CPU
+		{9ABA2D4F-BCC9-469C-973E-4BDFE44BF7EE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{9ABA2D4F-BCC9-469C-973E-4BDFE44BF7EE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{9ABA2D4F-BCC9-469C-973E-4BDFE44BF7EE}.Debug|Any CPU.Deploy.0 = Debug|Any CPU
+		{9ABA2D4F-BCC9-469C-973E-4BDFE44BF7EE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{9ABA2D4F-BCC9-469C-973E-4BDFE44BF7EE}.Release|Any CPU.Build.0 = Release|Any CPU
+		{9ABA2D4F-BCC9-469C-973E-4BDFE44BF7EE}.Release|Any CPU.Deploy.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {3254639A-4E6A-4CD5-AF2D-44EF0889F35A}
+	EndGlobalSection
+EndGlobal
