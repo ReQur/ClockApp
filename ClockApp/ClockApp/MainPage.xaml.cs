@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
+using System.IO;
 using System.Linq;
 using System.Runtime.CompilerServices;
 using System.Text;
@@ -23,22 +24,7 @@ namespace ClockApp
 
     }
 
-    static class Uptimer
-    {
-        static Uptimer()
-        {
-            Timer timer = new Timer(1000);
-            timer.Elapsed += async (sender, e) => await HandleTimer();
-            timer.Start();
-        }
-
-        private static Task HandleTimer()
-        {
-            Console.WriteLine("\nHandler not implemented...");
-            throw new NotImplementedException();
-
-        }
-    }
+    
 
     public class ViewModel : BindableObject
     {
@@ -49,6 +35,11 @@ namespace ClockApp
 
             CurrentTime = DateTime.Now;
 
+
+            addHourCommand = new Command(() =>
+            {
+                CDModification += 1;
+            }, () => true);
 
         }
 
@@ -62,7 +53,8 @@ namespace ClockApp
                 if (value == _currenttime) return;
                 _currenttime = value;
                 OnPropertyChanged(nameof(CurrentTime));
-                var DateString = _currenttime.ToString("HH:mm:ss").ToCharArray();
+                DateTime modifTime = _currenttime.AddHours(CDModification);
+                var DateString = modifTime.ToString("HH:mm:ss").ToCharArray();
                 for (var i = 0; i < DateString.Length; i++)
                 {
                     if (Numbers.Count > i)
@@ -77,6 +69,21 @@ namespace ClockApp
                         Numbers.Add(DateString[i]);
                     }
                 }
+            }
+        }
+
+
+        private int _cdmodification;
+
+        public int CDModification
+        {
+            get => _cdmodification;
+
+            set
+            {
+                if (_cdmodification == value) return;
+                _cdmodification = value;
+                OnPropertyChanged(nameof(CDModification));
             }
         }
 
@@ -121,5 +128,26 @@ namespace ClockApp
         }
 
         public ObservableCollection<char> Numbers { get; }
+
+
+        public ICommand
+            addHourCommand
+        {
+            get; 
+        }
+
+        class Uptimer
+        {
+            Uptimer()
+            {
+                Timer timer = new Timer(1000);
+                timer.Elapsed += async (sender, e) =>
+                {
+                    
+                };
+                timer.Start();
+            }
+        }
+
     }
 }

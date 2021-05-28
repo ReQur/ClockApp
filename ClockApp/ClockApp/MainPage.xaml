@@ -56,11 +56,11 @@
 
 
     </ContentPage.Resources>
-    
-    
-    <Frame WidthRequest="{Binding MainFrameWidth}"
-           HeightRequest="{Binding MainFrameHeight}"
-           Grid.Row="1">
+
+    <StackLayout Orientation="Vertical">
+
+        <Frame WidthRequest="{Binding MainFrameWidth}"
+               HeightRequest="{Binding MainFrameHeight}">
             <CollectionView ItemsSource="{Binding Numbers}">
                 <CollectionView.ItemsLayout>
                     <LinearItemsLayout Orientation="Horizontal" ItemSpacing="1"/>
@@ -307,5 +307,12 @@
             </CollectionView>
         </Frame>
 
+        <StackLayout Orientation="Horizontal">
+            <Button Command="{Binding addHourCommand}"/>
+        </StackLayout>
+
+    </StackLayout>
     
+
+
 </ContentPage>
