@@ -39,8 +39,16 @@ namespace ClockApp
             addHourCommand = new Command(() =>
             {
                 CDModification += 1;
+                CurrentTime = DateTime.Now;
             }, () => true);
 
+            suptHourCommand = new Command(() =>
+            {
+                CDModification -= 1;
+                CurrentTime = DateTime.Now;
+            }, () => true);
+
+            Uptimer Timer = new Uptimer(this);
         }
 
         private DateTime _currenttime;
@@ -87,45 +95,47 @@ namespace ClockApp
             }
         }
 
-        public double FrameWidth
-        {
-            get => _pagewidth * 0.8 / 8;
+        //public double FrameWidth
+        //{
+        //    get => _pagewidth * 0.8 / 8;
+        //}
+        //WidthRequest="{Binding Source={RelativeSource AncestorType={x:Type ClockApp:ViewModel}}, Path=FrameWidth}"
+        //HeightRequest="{Binding Source={RelativeSource AncestorType={x:Type ClockApp:ViewModel}}, Path=FrameHeight}"
+        //public double FrameHeight
+        //{
+        //    get => _pagewidth * 0.8 / 8 * 16 / 9;
 
-        }
+        //}
 
-        public double FrameHeight
-        {
-            get => _pagewidth * 0.8 / 8 * 16 / 9;
+        //public double MainFrameWidth
+        //{
+        //    get => _pagewidth * 0.8 + 7;
 
-        }
+        //}
 
-        public double MainFrameWidth
-        {
-            get => _pagewidth * 0.8;
+        //public double MainFrameHeight
+        //{
+        //    get => _pagewidth * 0.8 / 8 * 16 / 9;
 
-        }
+        //}
 
-        public double MainFrameHeight
-        {
-            get => _pagewidth * 0.8 / 8 * 16 / 9;
-
-        }
-
-        private double _pagewidth;
-        public double PageWidth
-        {
-            get => _pagewidth;
+        //private double _pagewidth;
+        //public double PageWidth
+        //{
+        //    get => _pagewidth;
 
 
-            set
-            {
-                if (_pagewidth == value) return;
-                _pagewidth = value;
-                OnPropertyChanged(nameof(PageWidth));
-                OnPropertyChanged(nameof(FrameWidth));
-                OnPropertyChanged(nameof(FrameHeight));
-            }
-        }
+        //    set
+        //    {
+        //        if (_pagewidth == value) return;
+        //        _pagewidth = value;
+        //        OnPropertyChanged(nameof(PageWidth));
+        //        OnPropertyChanged(nameof(FrameWidth));
+        //        OnPropertyChanged(nameof(FrameHeight));
+        //    }
+        //}
+        public double PageWidth { get; set; }
+
 
         public ObservableCollection<char> Numbers { get; }
 
@@ -136,14 +146,19 @@ namespace ClockApp
             get; 
         }
 
-        class Uptimer
+        public ICommand
+            suptHourCommand
         {
-            Uptimer()
+            get;
+        }
+        public class Uptimer
+        {
+            public Uptimer(ViewModel bindingModel)
             {
                 Timer timer = new Timer(1000);
                 timer.Elapsed += async (sender, e) =>
                 {
-                    
+                    bindingModel.CurrentTime = DateTime.Now;
                 };
                 timer.Start();
             }
