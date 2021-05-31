@@ -68,12 +68,12 @@
 
     </ContentPage.Resources>
     <Frame BackgroundColor="#fff0faeb">
-        <Grid RowDefinitions="*, 64, 2*">
+        <Grid RowDefinitions="*, Auto, 2*">
             <Frame Grid.Row="0" HasShadow="False">
                 <BoxView/>
             </Frame>
-            <Frame WidthRequest="295"
-               HeightRequest="64" 
+            <Frame WidthRequest="{Binding MainFrameWidth}"
+               HeightRequest="{Binding MainFrameHeight}" 
                HorizontalOptions="Center"
                Grid.Row="1"
             >
@@ -84,8 +84,8 @@
                     <CollectionView.ItemTemplate>
                         <DataTemplate x:DataType="x:Char">
                             <Frame  
-                            WidthRequest="36"
-                            HeightRequest="64"
+                            WidthRequest="{Binding Source={RelativeSource AncestorType={x:Type ClockApp:ViewModel}}, Path=FrameWidth}"
+                            HeightRequest="{Binding Source={RelativeSource AncestorType={x:Type ClockApp:ViewModel}}, Path=FrameHeight}"
                             >
                                 <RelativeLayout>
                                     <BoxView  x:Name="TopHorizontal"
